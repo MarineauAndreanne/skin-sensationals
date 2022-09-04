@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import Link from "next/link"
 import { BsBagCheckFill } from "react-icons/bs"
 
 import { useStateContext } from "../context/StateContext"
 
-const success = () => {
+const Success = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext()
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const success = () => {
   )
 }
 
-export default success
+export default Success
