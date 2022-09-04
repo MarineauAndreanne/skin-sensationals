@@ -8,7 +8,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <StateContext>
       <Layout>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            success: {
+              iconTheme: {
+                primary: "#E7C1CC",
+              },
+            },
+          }}
+        />
         <Component {...pageProps} />
       </Layout>
     </StateContext>

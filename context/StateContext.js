@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react"
+import React, { createContext, useContext, useState } from "react"
 import { CheckmarkIcon, toast } from "react-hot-toast"
 
 const Context = createContext()
@@ -17,22 +17,26 @@ export const StateContext = ({ children }) => {
     const checkProductInCart = cartItems.find(
       (item) => item._id === product._id
     )
+
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity)
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity)
 
     if (checkProductInCart) {
-      const updatedCartItems = cartItem.map((cartProduct) => {
-        if (cartProduct._id === product.id)
+      const updatedCartItems = cartItems.map((cartProduct) => {
+        if (cartProduct._id === product._id)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
           }
       })
+
       setCartItems(updatedCartItems)
     } else {
       product.quantity = quantity
+
       setCartItems([...cartItems, { ...product }])
     }
+
     toast.success(`${qty} ${product.name} added to the cart.`)
   }
 
@@ -98,6 +102,9 @@ export const StateContext = ({ children }) => {
         onAdd,
         toggleCartItemQuantity,
         onRemove,
+        setCartItems,
+        setTotalPrice,
+        setTotalQuantities,
       }}
     >
       {children}
